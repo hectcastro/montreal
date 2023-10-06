@@ -32,7 +32,7 @@ jobs:
             -D "rate=$(rates 1 USD to CAD --short)" > dist/index.html
 
       - name: Upload website artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: "./dist"
 
