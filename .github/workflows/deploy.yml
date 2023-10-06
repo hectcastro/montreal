@@ -4,9 +4,14 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 env:
   CARGO_TERM_COLOR: always
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -16,20 +21,16 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-          # override: true
           profile: minimal
-      # - uses: Swatinem/rust-cache@v2
+      - uses: Swatinem/rust-cache@v2
 
       - name: Install build tooling
         run: |
-          cargo install minijinja-cli rates
+          make install
 
       - name: Generate website
         run: |
-          mkdir -p dist
-          cp -R tmpl/css dist
-          minijinja-cli tmpl/index.html.j2 \
-            -D "rate=$(rates 1 USD to CAD --short)" > dist/index.html
+          make build
 
       - name: Upload website artifact
         uses: actions/upload-pages-artifact@v2
@@ -42,7 +43,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: $\{{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
