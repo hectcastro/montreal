@@ -35,7 +35,7 @@ jobs:
           make build
 
       - name: Upload website artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: "./dist"
 
