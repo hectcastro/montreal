@@ -1,0 +1,55 @@
+:root {
+    --background-color: #fff;
+    --text-color: #222;
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
+}
+
+[data-theme="dark"] {
+    --background-color: #222;
+    --text-color: #fff;
+    --link-color: #64b5f6;
+    --link-hover-color: #2196f3;
+}
+
+html {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.content {
+    color: var(--text-color); /* Ensure content text uses theme color */
+}
+
+/* Basic link styling using CSS variables */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* Ensure print styles also respect theme colors where appropriate */
+@media print {
+    body {
+        background: #fff !important; /* Typically print on white */
+        color: #000 !important;
+    }
+
+    a,
+    a:visited {
+        color: var(--link-color) !important;
+    }
+
+    .content {
+        color: #000 !important; /* Content text black for printing */
+    }
+}

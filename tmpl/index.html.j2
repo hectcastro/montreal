@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Montreal</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme.css">
   <meta name="description" content="A website that puts the USD → CAD exchange rate front-and-center.">
 </head>
 
@@ -15,6 +16,13 @@
     <h1>1 USD → {{ rate }} CAD</h1>
   </div>
 
+  <script>
+    (function() {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = prefersDark ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </body>
 
 </html>
