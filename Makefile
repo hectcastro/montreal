@@ -1,11 +1,7 @@
 build:
 	mkdir -p dist
 	cp -R tmpl/css dist
-	minijinja-cli tmpl/index.html.j2 \
-		-D "rate=$(shell curl -s 'https://api.exchangerate-api.com/v4/latest/USD' | jq '.rates.CAD')" > dist/index.html
+	sed "s/__RATE__/$$(curl -s 'https://api.exchangerate-api.com/v4/latest/USD' | jq -r '.rates.CAD')/g" \
+		tmpl/index.html.tmpl > dist/index.html
 
-install:
-	cargo install \
-		minijinja-cli
-
-.PHONY: build install
+.PHONY: build
