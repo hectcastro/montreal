@@ -8,9 +8,6 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
-env:
-  CARGO_TERM_COLOR: always
-
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -20,15 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          profile: minimal
-      - uses: Swatinem/rust-cache@v2
-
-      - name: Install build tooling
-        run: |
-          make install
 
       - name: Generate website
         run: |
