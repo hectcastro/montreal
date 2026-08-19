@@ -1,7 +1,13 @@
 build:
 	mkdir -p dist
-	cp -R tmpl/css dist
-	sed "s/__RATE__/$$(curl -s 'https://api.exchangerate-api.com/v4/latest/USD' | jq -r '.rates.CAD')/g" \
-		tmpl/index.html.tmpl > dist/index.html
+	mise exec -- elm make src/Main.elm --optimize --output=dist/elm.js
+	cp index.html dist/
 
-.PHONY: build
+format:
+	mise exec -- elm-format --yes src/ review/src/
+
+lint:
+	mise exec -- elm-format --validate src/ review/src/
+	mise exec -- elm-review
+
+.PHONY: build format lint

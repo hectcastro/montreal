@@ -1,0 +1,5 @@
+[tools]
+elm = { version = "0.19.1", bin = "elm" }
+"github:avh4/elm-format" = "0.8.8"
+node = "24"
+"npm:elm-review" = "2.13.5"

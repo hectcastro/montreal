@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Montreal</title>
+  <meta name="description" content="A website that puts the USD → CAD exchange rate front-and-center.">
+  <style>
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script src="elm.js"></script>
+  <script>
+    Elm.Main.init({
+      node: document.getElementById('app'),
+      flags: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    });
+  </script>
+</body>
+
+</html>
