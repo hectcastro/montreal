@@ -2,6 +2,7 @@ build:
 	mkdir -p dist
 	mise exec -- elm make src/Main.elm --optimize --output=dist/elm.js
 	cp index.html dist/
+	cp -R assets dist/
 
 format:
 	mise exec -- elm-format --yes src/ review/src/

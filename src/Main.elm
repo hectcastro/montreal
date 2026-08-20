@@ -96,7 +96,8 @@ view model =
         , style "display" "flex"
         , style "align-items" "center"
         , style "justify-content" "center"
-        , style "font-family" "'Courier New', Courier, monospace"
+        , style "font-family" "'Departure Mono', 'Courier New', Courier, monospace"
+        , style "font-size" "32px"
         , style "background-color" backgroundColor
         , style "color" textColor
         ]
