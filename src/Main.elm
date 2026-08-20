@@ -7,7 +7,7 @@ import Http
 import Json.Decode as D
 
 
-main : Program Bool Model Msg
+main : Program D.Value Model Msg
 main =
     Browser.element
         { init = init
@@ -33,8 +33,13 @@ type alias Model =
     }
 
 
-init : Bool -> ( Model, Cmd Msg )
-init dark =
+init : D.Value -> ( Model, Cmd Msg )
+init flags =
+    let
+        dark =
+            D.decodeValue D.bool flags
+                |> Result.withDefault False
+    in
     ( { dark = dark, rate = Loading }
     , Http.get
         { url = "https://api.exchangerate-api.com/v4/latest/USD"
